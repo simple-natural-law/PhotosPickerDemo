@@ -10,6 +10,8 @@
 #import "ViewController.h"
 #import "PhotoCell.h"
 #import <Photos/Photos.h>
+#import "PhotosPickerViewController.h"
+
 
 @interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -63,6 +65,11 @@
             
             if (status == PHAuthorizationStatusAuthorized)
             {
+                PhotosPickerViewController *vc = [[PhotosPickerViewController alloc] init];
+                
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                
+                [self.navigationController presentViewController:nav animated:YES completion:nil];
                 
             }else
             {

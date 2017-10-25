@@ -28,9 +28,20 @@
     [self setUI];
 }
 
+
+#pragma mark- Methods
 - (void)setUI
 {
     self.title = @"选择相片";
+    
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 40.0, 30.0);
+    [button setTitle:@"取消" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(dismissViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -46,6 +57,11 @@
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
     [self.view addSubview:self.collectionView];
+}
+
+- (void)dismissViewController
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark- UICollectionViewDataSource
