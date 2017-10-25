@@ -13,6 +13,8 @@
 		342AE9261FA0D241008E3E05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 342AE9251FA0D241008E3E05 /* Assets.xcassets */; };
 		342AE9291FA0D241008E3E05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342AE9271FA0D241008E3E05 /* LaunchScreen.storyboard */; };
 		342AE92C1FA0D241008E3E05 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AE92B1FA0D241008E3E05 /* main.m */; };
+		342AE9341FA0D656008E3E05 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AE9331FA0D656008E3E05 /* PhotoCell.m */; };
+		342AE9371FA0DAC1008E3E05 /* PhotosPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AE9361FA0DAC1008E3E05 /* PhotosPickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		342AE9281FA0D241008E3E05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		342AE92A1FA0D241008E3E05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		342AE92B1FA0D241008E3E05 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		342AE9321FA0D656008E3E05 /* PhotoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		342AE9331FA0D656008E3E05 /* PhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		342AE9351FA0DAC1008E3E05 /* PhotosPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotosPickerViewController.h; sourceTree = "<group>"; };
+		342AE9361FA0DAC1008E3E05 /* PhotosPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosPickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 				342AE91D1FA0D241008E3E05 /* AppDelegate.m */,
 				342AE91F1FA0D241008E3E05 /* ViewController.h */,
 				342AE9201FA0D241008E3E05 /* ViewController.m */,
+				342AE9321FA0D656008E3E05 /* PhotoCell.h */,
+				342AE9331FA0D656008E3E05 /* PhotoCell.m */,
+				342AE9351FA0DAC1008E3E05 /* PhotosPickerViewController.h */,
+				342AE9361FA0DAC1008E3E05 /* PhotosPickerViewController.m */,
 				342AE9221FA0D241008E3E05 /* Main.storyboard */,
 				342AE9251FA0D241008E3E05 /* Assets.xcassets */,
 				342AE9271FA0D241008E3E05 /* LaunchScreen.storyboard */,
@@ -142,8 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				342AE9341FA0D656008E3E05 /* PhotoCell.m in Sources */,
 				342AE9211FA0D241008E3E05 /* ViewController.m in Sources */,
 				342AE92C1FA0D241008E3E05 /* main.m in Sources */,
+				342AE9371FA0DAC1008E3E05 /* PhotosPickerViewController.m in Sources */,
 				342AE91E1FA0D241008E3E05 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,7 +230,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -267,7 +279,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -281,6 +293,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AWR7HVK86;
 				INFOPLIST_FILE = PhotosPickerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shijian.PhotosPickerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -295,6 +308,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AWR7HVK86;
 				INFOPLIST_FILE = PhotosPickerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shijian.PhotosPickerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
