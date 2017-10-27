@@ -39,6 +39,19 @@
 }
 
 
+- (PHFetchResult<PHAsset *> *)requestAllPhotoAssets
+{
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    
+    options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:YES]];
+    
+    PHFetchResult<PHAsset *> *result = [PHAsset fetchAssetsWithOptions:options];
+    
+    return result;
+}
+
+
+
 - (void)requestImageForAsset:(PHAsset *)asset targetSize:(CGSize)targetSize resultHandler:(void (^)(UIImage *, NSDictionary *))resultHandler
 {
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];

@@ -16,6 +16,8 @@
 /// 检查app系统相册访问权限
 - (void)requestAuthorization:(void(^)(PHAuthorizationStatus status))handler;
 
+- (PHFetchResult<PHAsset *> *)requestAllPhotoAssets;
+
 - (void)requestImageForAsset:(PHAsset *)asset targetSize:(CGSize)targetSize resultHandler:(void (^) (UIImage *image, NSDictionary *info))resultHandler;
 
 @end

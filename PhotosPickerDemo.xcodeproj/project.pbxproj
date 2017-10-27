@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2A59C81FA175DD00C9A35C /* PhotoAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2A59C71FA175DD00C9A35C /* PhotoAssetManager.m */; };
+		1A2A59CB1FA17C2D00C9A35C /* UIImage+extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2A59CA1FA17C2D00C9A35C /* UIImage+extend.m */; };
 		342AE91E1FA0D241008E3E05 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AE91D1FA0D241008E3E05 /* AppDelegate.m */; };
 		342AE9211FA0D241008E3E05 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AE9201FA0D241008E3E05 /* ViewController.m */; };
 		342AE9241FA0D241008E3E05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342AE9221FA0D241008E3E05 /* Main.storyboard */; };
@@ -18,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A2A59C61FA175DD00C9A35C /* PhotoAssetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoAssetManager.h; sourceTree = "<group>"; };
+		1A2A59C71FA175DD00C9A35C /* PhotoAssetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAssetManager.m; sourceTree = "<group>"; };
+		1A2A59C91FA17C2D00C9A35C /* UIImage+extend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+extend.h"; sourceTree = "<group>"; };
+		1A2A59CA1FA17C2D00C9A35C /* UIImage+extend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+extend.m"; sourceTree = "<group>"; };
 		342AE9191FA0D241008E3E05 /* PhotosPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		342AE91C1FA0D241008E3E05 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		342AE91D1FA0D241008E3E05 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,6 +78,10 @@
 				342AE9331FA0D656008E3E05 /* PhotoCell.m */,
 				342AE9351FA0DAC1008E3E05 /* PhotosPickerViewController.h */,
 				342AE9361FA0DAC1008E3E05 /* PhotosPickerViewController.m */,
+				1A2A59C61FA175DD00C9A35C /* PhotoAssetManager.h */,
+				1A2A59C71FA175DD00C9A35C /* PhotoAssetManager.m */,
+				1A2A59C91FA17C2D00C9A35C /* UIImage+extend.h */,
+				1A2A59CA1FA17C2D00C9A35C /* UIImage+extend.m */,
 				342AE9221FA0D241008E3E05 /* Main.storyboard */,
 				342AE9251FA0D241008E3E05 /* Assets.xcassets */,
 				342AE9271FA0D241008E3E05 /* LaunchScreen.storyboard */,
@@ -153,6 +163,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				342AE9341FA0D656008E3E05 /* PhotoCell.m in Sources */,
+				1A2A59C81FA175DD00C9A35C /* PhotoAssetManager.m in Sources */,
+				1A2A59CB1FA17C2D00C9A35C /* UIImage+extend.m in Sources */,
 				342AE9211FA0D241008E3E05 /* ViewController.m in Sources */,
 				342AE92C1FA0D241008E3E05 /* main.m in Sources */,
 				342AE9371FA0DAC1008E3E05 /* PhotosPickerViewController.m in Sources */,
