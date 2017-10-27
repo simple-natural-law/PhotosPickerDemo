@@ -1,31 +1,33 @@
 //
-//  PhotosPickerViewController.m
+//  PhotoPickerViewController.m
 //  PhotosPickerDemo
 //
 //  Created by 张诗健 on 2017/10/25.
 //  Copyright © 2017年 张诗健. All rights reserved.
 //
 
-#import "PhotosPickerViewController.h"
-#import <Photos/Photos.h>
+#import "PhotoPickerViewController.h"
+#import "PhotoAssetManager.h"
 
 
-@interface PhotosPickerViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface PhotoPickerViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSMutableArray<PHAsset *> *assetArray;
+@property (nonatomic, strong) PHFetchResult<PHAsset *> *fetchResult;
 
 @end
 
 
-@implementation PhotosPickerViewController
+@implementation PhotoPickerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self setUI];
+    
+    self.fetchResult = [[PhotoAssetManager defaultManager] requestAllPhotoAssets];
 }
 
 
@@ -67,7 +69,7 @@
 #pragma mark- UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.assetArray.count;
+    return self.fetchResult.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -83,16 +85,6 @@
     
 }
 
-
-#pragma mark- getter
-- (NSMutableArray<PHAsset *> *)assetArray
-{
-    if (_assetArray == nil)
-    {
-        _assetArray = [[NSMutableArray alloc] init];
-    }
-    return _assetArray;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -9,8 +9,8 @@
 
 #import "ViewController.h"
 #import "PhotoCell.h"
-#import <Photos/Photos.h>
-#import "PhotosPickerViewController.h"
+#import "PhotoAssetManager.h"
+#import "PhotoPickerViewController.h"
 
 
 @interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
@@ -61,11 +61,11 @@
 {
     if (indexPath.row == self.selectedPhotoArray.count)
     {
-        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        [[PhotoAssetManager defaultManager] requestAuthorization:^(PHAuthorizationStatus status) {
             
             if (status == PHAuthorizationStatusAuthorized)
             {
-                PhotosPickerViewController *vc = [[PhotosPickerViewController alloc] init];
+                PhotoPickerViewController *vc = [[PhotoPickerViewController alloc] init];
                 
                 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
                 
