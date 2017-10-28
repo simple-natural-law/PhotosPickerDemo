@@ -8,9 +8,12 @@
 
 #import "PhotoPickerViewController.h"
 #import "PhotoAssetManager.h"
-
+#import "PhotoCell.h"
 
 @interface PhotoPickerViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+{
+    CGSize thumbnailSize;
+}
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -27,9 +30,15 @@
     
     [self setUI];
     
+    thumbnailSize = CGSizeMake(80.0*[UIScreen mainScreen].scale, 80.0*[UIScreen mainScreen].scale);
+    
     self.fetchResult = [[PhotoAssetManager defaultManager] requestAllPhotoAssets];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 
 #pragma mark- Methods
 - (void)setUI
@@ -57,7 +66,7 @@
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.delegate   = self;
     self.collectionView.dataSource = self;
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
+    [self.collectionView registerClass:[PhotoPickerCell class] forCellWithReuseIdentifier:@"PhotoPickerCell"];
     [self.view addSubview:self.collectionView];
 }
 
@@ -74,8 +83,12 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    PhotoPickerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoPickerCell" forIndexPath:indexPath];
     
+    [[PhotoAssetManager defaultManager] requestImageForAsset:[self.fetchResult objectAtIndex:indexPath.row] targetSize:thumbnailSize resultHandler:^(UIImage *image, NSDictionary *info) {
+        
+        
+    }];
     return cell;
 }
 
