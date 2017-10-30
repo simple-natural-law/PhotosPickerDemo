@@ -65,38 +65,41 @@
     {
         [[PhotoAssetManager defaultManager] requestAuthorization:^(PHAuthorizationStatus status) {
             
-            if (status == PHAuthorizationStatusAuthorized)
-            {
-                PhotoPickerViewController *vc = [[PhotoPickerViewController alloc] init];
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                
-                [self.navigationController presentViewController:nav animated:YES completion:nil];
-                
-            }else
-            {
-                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"照片权限已关闭" message:@"请前往设置-开启本APP的照片读取权限" preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"前往设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                if (status == PHAuthorizationStatusAuthorized)
+                {
+                    PhotoPickerViewController *vc = [[PhotoPickerViewController alloc] init];
                     
-                    if (action.style == UIAlertActionStyleDefault)
-                    {
-                        NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                    
+                    [self.navigationController presentViewController:nav animated:YES completion:nil];
+                    
+                }else
+                {
+                    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"照片权限已关闭" message:@"请前往设置-开启本APP的照片读取权限" preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"前往设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         
-                        if([[UIApplication sharedApplication] canOpenURL:url])
+                        if (action.style == UIAlertActionStyleDefault)
                         {
-                            [[UIApplication sharedApplication] openURL:url];
+                            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                            
+                            if([[UIApplication sharedApplication] canOpenURL:url])
+                            {
+                                [[UIApplication sharedApplication] openURL:url];
+                            }
                         }
-                    }
-                }];
-                
-                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
-                
-                [alertVC addAction:cancelAction];
-                [alertVC addAction:otherAction];
-                
-                [self.navigationController presentViewController:alertVC animated:YES completion:nil];
-            }
+                    }];
+                    
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+                    
+                    [alertVC addAction:cancelAction];
+                    [alertVC addAction:otherAction];
+                    
+                    [self.navigationController presentViewController:alertVC animated:YES completion:nil];
+                }
+            });
         }];
     }else
     {

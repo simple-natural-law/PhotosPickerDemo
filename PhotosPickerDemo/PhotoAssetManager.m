@@ -49,18 +49,30 @@
     
     options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:YES]];
     
-    PHFetchResult<PHAsset *> *result = [PHAsset fetchAssetsWithOptions:options];
+    self.fetchResult = [PHAsset fetchAssetsWithOptions:options];
     
-    return result;
+    return self.fetchResult;
 }
 
-
-
-- (void)requestImageForAsset:(PHAsset *)asset targetSize:(CGSize)targetSize resultHandler:(void (^)(UIImage *, NSDictionary *))resultHandler
+- (void)requestThumbnailImageForAsset:(PHAsset *)asset resultHandler:(void (^)(UIImage *, NSDictionary *))resultHandler
 {
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.resizeMode = PHImageRequestOptionsResizeModeFast;
-    options.synchronous = NO;
+    [self.imageManager requestImageForAsset:asset targetSize:self.thumbnailSize contentMode:PHImageContentModeDefault options:nil resultHandler:resultHandler];
+}
+
+- (void)requestImageForAsset:(PHAsset *)asset targetSize:(CGSize)targetSize contentMode:(PHImageContentMode)contentMode options:(PHImageRequestOptions *)options resultHandler:(void (^)(UIImage *, NSDictionary *))resultHandler
+{
+    PHImageManager *manager = self.imageManager;
+    
+    [manager requestImageForAsset:asset targetSize:targetSize contentMode:contentMode options:options resultHandler:resultHandler];
+}
+
+- (void)updateCachedAssetsForCollectionView:(UICollectionView *)collectionView
+{
+    CGRect visibleRect = CGRectMake(collectionView.contentOffset.x, collectionView.contentOffset.y, collectionView.frame.size.width, collectionView.frame.size.height);
+    
+    CGRect preheatRect = CGRectInset(visibleRect, 0, -0.5 * visibleRect.size.height);
+    
+    CGFloat delta = fabs(CGRectGetMidY(preheatRect) - CGRectGetMidY(self.previousPreheatRect));
     
     [self.imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeDefault options:options resultHandler:resultHandler];
 }
@@ -124,3 +136,4 @@
 }
 
 @end
+

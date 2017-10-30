@@ -68,6 +68,8 @@
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[PhotoPickerCell class] forCellWithReuseIdentifier:@"PhotoPickerCell"];
     [self.view addSubview:self.collectionView];
+    
+    [self.collectionView registerClass:[PhotoPickerCell class] forCellWithReuseIdentifier:@"PhotoPickerCell"];
 }
 
 - (void)dismissViewController
@@ -98,6 +100,11 @@
     
 }
 
+#pragma mark- UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [[PhotoAssetManager defaultManager] updateCachedAssetsForCollectionView:self.collectionView];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
