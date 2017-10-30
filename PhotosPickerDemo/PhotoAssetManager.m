@@ -57,14 +57,15 @@
 
 - (void)requestThumbnailImageForAsset:(PHAsset *)asset resultHandler:(void (^)(UIImage *, NSDictionary *))resultHandler
 {
-    [self requestImageForAsset:asset targetSize:self.thumbnailSize resultHandler:resultHandler];
+    [self.imageManager requestImageForAsset:asset targetSize:self.thumbnailSize contentMode:PHImageContentModeDefault options:nil resultHandler:resultHandler];
 }
 
-- (void)requestImageForAsset:(PHAsset *)asset targetSize:(CGSize)targetSize resultHandler:(void (^)(UIImage *, NSDictionary *))resultHandler
+- (void)requestImageForAsset:(PHAsset *)asset targetSize:(CGSize)targetSize contentMode:(PHImageContentMode)contentMode options:(PHImageRequestOptions *)options resultHandler:(void (^)(UIImage *, NSDictionary *))resultHandler
 {
-    [self.imageManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeDefault options:nil resultHandler:resultHandler];
+    PHImageManager *manager = self.imageManager;
+    
+    [manager requestImageForAsset:asset targetSize:targetSize contentMode:contentMode options:options resultHandler:resultHandler];
 }
-
 
 - (void)updateCachedAssetsForCollectionView:(UICollectionView *)collectionView
 {
@@ -153,3 +154,4 @@
 }
 
 @end
+
