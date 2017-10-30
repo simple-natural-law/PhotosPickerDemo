@@ -8,9 +8,9 @@
 
 #import "PhotoPickerViewController.h"
 #import "PhotoAssetManager.h"
+#import "PhotoCell.h"
 
-
-@interface PhotoPickerViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface PhotoPickerViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -27,9 +27,17 @@
     
     [self setUI];
     
+    [PhotoAssetManager defaultManager].thumbnailSize = CGSizeMake(80.0*[UIScreen mainScreen].scale, 80.0*[UIScreen mainScreen].scale);
+    
     self.fetchResult = [[PhotoAssetManager defaultManager] requestAllPhotoAssets];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [[PhotoAssetManager defaultManager] updateCachedAssetsForCollectionView:self.collectionView];
+}
 
 #pragma mark- Methods
 - (void)setUI
@@ -59,6 +67,8 @@
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
     [self.view addSubview:self.collectionView];
+    
+    [self.collectionView registerClass:[PhotoPickerCell class] forCellWithReuseIdentifier:@"PhotoPickerCell"];
 }
 
 - (void)dismissViewController
@@ -74,7 +84,12 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    PhotoPickerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoPickerCell" forIndexPath:indexPath];
+    
+    [[PhotoAssetManager defaultManager] requestThumbnailImageForAsset:[self.fetchResult objectAtIndex:indexPath.item] resultHandler:^(UIImage *image, NSDictionary *info) {
+        
+        cell.imageView.image = image;
+    }];
     
     return cell;
 }
@@ -85,6 +100,11 @@
     
 }
 
+#pragma mark- UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [[PhotoAssetManager defaultManager] updateCachedAssetsForCollectionView:self.collectionView];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

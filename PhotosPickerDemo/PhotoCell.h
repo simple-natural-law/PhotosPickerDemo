@@ -10,6 +10,12 @@
 
 @interface PhotoCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIImageView *imageView;
+
+@end
+
+
+@interface PhotoPickerCell : PhotoCell
+
 
 @end
