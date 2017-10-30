@@ -16,9 +16,12 @@
     
     if (self)
     {
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
+        self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        self.imageView.layer.masksToBounds = YES;
+        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.imageView];
     }
+    
     return self;
 }
 
@@ -36,6 +39,7 @@
     {
         
     }
+    
     return self;
 }
 

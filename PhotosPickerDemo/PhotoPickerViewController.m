@@ -10,10 +10,7 @@
 #import "PhotoAssetManager.h"
 #import "PhotoCell.h"
 
-@interface PhotoPickerViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
-{
-    CGSize thumbnailSize;
-}
+@interface PhotoPickerViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -30,7 +27,7 @@
     
     [self setUI];
     
-    thumbnailSize = CGSizeMake(80.0*[UIScreen mainScreen].scale, 80.0*[UIScreen mainScreen].scale);
+    [PhotoAssetManager defaultManager].thumbnailSize = CGSizeMake(80.0*[UIScreen mainScreen].scale, 80.0*[UIScreen mainScreen].scale);
     
     self.fetchResult = [[PhotoAssetManager defaultManager] requestAllPhotoAssets];
 }
@@ -38,6 +35,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [[PhotoAssetManager defaultManager] updateCachedAssetsForCollectionView:self.collectionView];
 }
 
 #pragma mark- Methods
@@ -66,7 +65,8 @@
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.delegate   = self;
     self.collectionView.dataSource = self;
-    [self.collectionView registerClass:[PhotoPickerCell class] forCellWithReuseIdentifier:@"PhotoPickerCell"];
+    self.collectionView.alwaysBounceVertical = YES;
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
     [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[PhotoPickerCell class] forCellWithReuseIdentifier:@"PhotoPickerCell"];
@@ -87,10 +87,11 @@
 {
     PhotoPickerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoPickerCell" forIndexPath:indexPath];
     
-    [[PhotoAssetManager defaultManager] requestImageForAsset:[self.fetchResult objectAtIndex:indexPath.row] targetSize:thumbnailSize resultHandler:^(UIImage *image, NSDictionary *info) {
+    [[PhotoAssetManager defaultManager] requestThumbnailImageForAsset:[self.fetchResult objectAtIndex:indexPath.item] resultHandler:^(UIImage *image, NSDictionary *info) {
         
-        
+        cell.imageView.image = image;
     }];
+    
     return cell;
 }
 
