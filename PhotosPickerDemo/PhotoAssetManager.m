@@ -40,10 +40,7 @@
 
 - (void)requestAuthorization:(void (^)(PHAuthorizationStatus))handler
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        [PHPhotoLibrary requestAuthorization:handler];
-    });
+    [PHPhotoLibrary requestAuthorization:handler];
 }
 
 
