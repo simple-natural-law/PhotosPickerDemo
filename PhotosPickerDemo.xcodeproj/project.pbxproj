@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A2A59C81FA175DD00C9A35C /* PhotoAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2A59C71FA175DD00C9A35C /* PhotoAssetManager.m */; };
 		1A2A59CB1FA17C2D00C9A35C /* UIImage+extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2A59CA1FA17C2D00C9A35C /* UIImage+extend.m */; };
+		1A8A402E1FA8649300F92368 /* PhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8A402D1FA8649300F92368 /* PhotoDetailsViewController.m */; };
 		342AE91E1FA0D241008E3E05 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AE91D1FA0D241008E3E05 /* AppDelegate.m */; };
 		342AE9211FA0D241008E3E05 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342AE9201FA0D241008E3E05 /* ViewController.m */; };
 		342AE9241FA0D241008E3E05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342AE9221FA0D241008E3E05 /* Main.storyboard */; };
@@ -24,6 +25,8 @@
 		1A2A59C71FA175DD00C9A35C /* PhotoAssetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoAssetManager.m; sourceTree = "<group>"; };
 		1A2A59C91FA17C2D00C9A35C /* UIImage+extend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+extend.h"; sourceTree = "<group>"; };
 		1A2A59CA1FA17C2D00C9A35C /* UIImage+extend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+extend.m"; sourceTree = "<group>"; };
+		1A8A402C1FA8649300F92368 /* PhotoDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoDetailsViewController.h; sourceTree = "<group>"; };
+		1A8A402D1FA8649300F92368 /* PhotoDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailsViewController.m; sourceTree = "<group>"; };
 		342AE9191FA0D241008E3E05 /* PhotosPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		342AE91C1FA0D241008E3E05 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		342AE91D1FA0D241008E3E05 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -78,6 +81,8 @@
 				342AE9331FA0D656008E3E05 /* PhotoCell.m */,
 				342AE9351FA0DAC1008E3E05 /* PhotoPickerViewController.h */,
 				342AE9361FA0DAC1008E3E05 /* PhotoPickerViewController.m */,
+				1A8A402C1FA8649300F92368 /* PhotoDetailsViewController.h */,
+				1A8A402D1FA8649300F92368 /* PhotoDetailsViewController.m */,
 				1A2A59C61FA175DD00C9A35C /* PhotoAssetManager.h */,
 				1A2A59C71FA175DD00C9A35C /* PhotoAssetManager.m */,
 				1A2A59C91FA17C2D00C9A35C /* UIImage+extend.h */,
@@ -168,6 +173,7 @@
 				342AE9211FA0D241008E3E05 /* ViewController.m in Sources */,
 				342AE92C1FA0D241008E3E05 /* main.m in Sources */,
 				342AE9371FA0DAC1008E3E05 /* PhotoPickerViewController.m in Sources */,
+				1A8A402E1FA8649300F92368 /* PhotoDetailsViewController.m in Sources */,
 				342AE91E1FA0D241008E3E05 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) PHFetchResult<PHAsset *> *fetchResult;
 
+@property (nonatomic, strong) NSMutableArray<PHAsset *> *selectedAssetArray;
+
 @end
 
 
@@ -92,6 +94,17 @@
         cell.imageView.image = image;
     }];
     
+    __weak typeof(self) weakself = self;
+    
+    [cell didTouchSelectedButtonBlock:^(BOOL selected, PhotoPickerCell *cell) {
+        
+        __strong typeof(weakself) strongSelf = weakself;
+        
+        NSIndexPath *indexPath = [strongSelf.collectionView indexPathForCell:cell];
+        
+        [strongSelf.selectedAssetArray addObject:[self.fetchResult objectAtIndex:indexPath.item]];
+    }];
+    
     return cell;
 }
 
@@ -106,6 +119,18 @@
 {
     [[PhotoAssetManager defaultManager] updateCachedAssetsForCollectionView:self.collectionView fetchResult:self.fetchResult];
 }
+
+
+#pragma mark- getter
+- (NSMutableArray<PHAsset *> *)selectedAssetArray
+{
+    if (_selectedAssetArray == nil)
+    {
+        _selectedAssetArray = [[NSMutableArray alloc] init];
+    }
+    return _selectedAssetArray;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
