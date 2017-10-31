@@ -18,5 +18,6 @@
 
 @interface PhotoPickerCell : PhotoCell
 
+- (void)didTouchSelectedButtonBlock:(void (^)(BOOL selected, PhotoPickerCell *cell))block;
 
 @end

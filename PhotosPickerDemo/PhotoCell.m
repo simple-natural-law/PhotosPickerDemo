@@ -28,10 +28,13 @@
 @end
 
 
+typedef void(^TouchSelectedButtonBlock)(BOOL selected, PhotoPickerCell *cell);
 
 @interface PhotoPickerCell ()
 
 @property (nonatomic, strong) UIButton *selectButton;
+
+@property (nonatomic, copy)   TouchSelectedButtonBlock block;
 
 @end
 
@@ -60,6 +63,16 @@
 - (void)selectedAction
 {
     self.selectButton.selected = !self.selectButton.selected;
+    
+    if (self.block)
+    {
+        self.block(self.selectButton.selected, self);
+    }
+}
+
+- (void)didTouchSelectedButtonBlock:(void (^)(BOOL, PhotoPickerCell *))block
+{
+    self.block = block;
 }
 
 @end
