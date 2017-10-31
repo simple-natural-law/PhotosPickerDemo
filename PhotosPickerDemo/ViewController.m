@@ -33,8 +33,6 @@
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
-    [PhotoAssetManager defaultManager].thumbnailSize = CGSizeMake(80.0*[UIScreen mainScreen].scale, 80.0*[UIScreen mainScreen].scale);
-    
     [self.collectionView registerClass:[PhotoCell class] forCellWithReuseIdentifier:@"PhotoCell"];
 }
 

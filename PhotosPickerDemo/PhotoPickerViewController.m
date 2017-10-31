@@ -27,6 +27,8 @@
     
     [self setUI];
     
+    [PhotoAssetManager defaultManager].thumbnailSize = CGSizeMake(80.0*[UIScreen mainScreen].scale, 80.0*[UIScreen mainScreen].scale);
+    
     self.fetchResult = [[PhotoAssetManager defaultManager] requestAllPhotoAssets];
 }
 
