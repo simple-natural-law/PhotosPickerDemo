@@ -38,6 +38,7 @@
 
 @implementation PhotoPickerCell
 
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -45,21 +46,20 @@
     if (self)
     {
         self.selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.selectButton.frame = CGRectMake(frame.size.width - 30.0, 0.0, 30.0, 30.0);
+        self.selectButton.frame = CGRectMake(frame.size.width - 25.0, 0.0, 25.0, 25.0);
         [self.selectButton setImage:[UIImage imageNamed:@"deselected"] forState:UIControlStateNormal];
         [self.selectButton setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
+        [self.selectButton addTarget:self action:@selector(selectedAction) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.selectButton];
     }
     
     return self;
 }
 
-- (void)setSelected:(BOOL)selected
-{
-    [super setSelected:selected];
-    
-    self.selectButton.selected = selected;
-}
 
+- (void)selectedAction
+{
+    self.selectButton.selected = !self.selectButton.selected;
+}
 
 @end
