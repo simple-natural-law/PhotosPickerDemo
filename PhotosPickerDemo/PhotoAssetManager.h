@@ -22,7 +22,7 @@
 // 获取缩略图
 - (void)requestThumbnailImageForAsset:(PHAsset *)asset resultHandler:(void (^) (UIImage *image, NSDictionary *info))resultHandler;
 // 更新缓存
-- (void)updateCachedAssetsForCollectionView:(UICollectionView *)collectionView;
+- (void)updateCachedAssetsForCollectionView:(UICollectionView *)collectionView fetchResult:(PHFetchResult<PHAsset *> *)fetchResult;
 // 重置缓存(系统相册图片资源有变化时，需要调用)
 - (void)resetCachedAssets;
 // 获取给定尺寸大小的图片

@@ -14,8 +14,6 @@
 
 @property (nonatomic, assign) CGRect previousPreheatRect;
 
-@property (nonatomic, strong) PHFetchResult<PHAsset *> *fetchResult;
-
 @end
 
 
@@ -31,7 +29,6 @@
     dispatch_once(&onceToken, ^{
         
         manager = [[PhotoAssetManager alloc] init];
-        
         manager.previousPreheatRect = CGRectZero;
     });
     
@@ -51,9 +48,7 @@
     
     options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:YES]];
     
-    self.fetchResult = [PHAsset fetchAssetsWithOptions:options];
-    
-    return self.fetchResult;
+    return [PHAsset fetchAssetsWithOptions:options];
 }
 
 - (void)requestThumbnailImageForAsset:(PHAsset *)asset resultHandler:(void (^)(UIImage *, NSDictionary *))resultHandler
@@ -68,7 +63,7 @@
     [manager requestImageForAsset:asset targetSize:targetSize contentMode:contentMode options:options resultHandler:resultHandler];
 }
 
-- (void)updateCachedAssetsForCollectionView:(UICollectionView *)collectionView
+- (void)updateCachedAssetsForCollectionView:(UICollectionView *)collectionView fetchResult:(PHFetchResult<PHAsset *> *)fetchResult
 {
     CGRect visibleRect = CGRectMake(collectionView.contentOffset.x, collectionView.contentOffset.y, collectionView.frame.size.width, collectionView.frame.size.height);
     
@@ -111,7 +106,7 @@
             
             for (UICollectionViewLayoutAttributes * attributes in attributesArray)
             {
-                PHAsset *asset = [self.fetchResult objectAtIndex:attributes.indexPath.item];
+                PHAsset *asset = [fetchResult objectAtIndex:attributes.indexPath.item];
                 
                 [addedAssets addObject:asset];
             }
@@ -127,7 +122,7 @@
             
             for (UICollectionViewLayoutAttributes * attributes in attributesArray)
             {
-                PHAsset *asset = [self.fetchResult objectAtIndex:attributes.indexPath.item];
+                PHAsset *asset = [fetchResult objectAtIndex:attributes.indexPath.item];
                 
                 [removedAssets addObject:asset];
             }
@@ -148,36 +143,6 @@
     self.previousPreheatRect = CGRectZero;
 }
 
-- (void)differencesBetweenOldRect:(CGRect)oldRect andNewRect:(CGRect)newRect addedRectArr:(NSMutableArray *)addedRectArr removedRectArr:(NSMutableArray *)removedRectArr
-{
-    if (CGRectIntersectsRect(oldRect, newRect))
-    {
-        if (CGRectGetMaxY(newRect) > CGRectGetMaxY(oldRect))
-        {
-            [addedRectArr addObject:[NSValue valueWithCGRect:CGRectMake(newRect.origin.x, CGRectGetMaxY(oldRect), newRect.size.width, CGRectGetMaxY(newRect) - CGRectGetMaxY(oldRect))]];
-        }
-        
-        if (CGRectGetMinY(oldRect) > CGRectGetMinY(newRect))
-        {
-            [addedRectArr addObject:[NSValue valueWithCGRect:CGRectMake(newRect.origin.x, CGRectGetMinY(newRect), newRect.size.width, CGRectGetMinY(oldRect) - CGRectGetMinY(newRect))]];
-        }
-        
-        if (CGRectGetMaxY(newRect) < CGRectGetMaxY(oldRect))
-        {
-            [removedRectArr addObject:[NSValue valueWithCGRect:CGRectMake(newRect.origin.x, CGRectGetMaxY(newRect), newRect.size.width, CGRectGetMaxY(oldRect) - CGRectGetMaxY(newRect))]];
-        }
-        
-        if (CGRectGetMinY(oldRect) < CGRectGetMinY(newRect))
-        {
-            [removedRectArr addObject:[NSValue valueWithCGRect:CGRectMake(newRect.origin.x, CGRectGetMinY(oldRect), newRect.size.width, CGRectGetMinY(newRect) - CGRectGetMinY(oldRect))]];
-        }
-    }else
-    {
-        [addedRectArr addObject:[NSValue valueWithCGRect:newRect]];
-        
-        [removedRectArr addObject:[NSValue valueWithCGRect:oldRect]];
-    }
-}
 
 #pragma mark- getter
 - (PHCachingImageManager *)imageManager

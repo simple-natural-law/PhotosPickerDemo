@@ -27,8 +27,6 @@
     
     [self setUI];
     
-    [PhotoAssetManager defaultManager].thumbnailSize = CGSizeMake(80.0*[UIScreen mainScreen].scale, 80.0*[UIScreen mainScreen].scale);
-    
     self.fetchResult = [[PhotoAssetManager defaultManager] requestAllPhotoAssets];
 }
 
@@ -36,7 +34,7 @@
 {
     [super viewDidAppear:animated];
     
-    [[PhotoAssetManager defaultManager] updateCachedAssetsForCollectionView:self.collectionView];
+    [[PhotoAssetManager defaultManager] updateCachedAssetsForCollectionView:self.collectionView fetchResult:self.fetchResult];
 }
 
 #pragma mark- Methods
@@ -104,7 +102,7 @@
 #pragma mark- UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [[PhotoAssetManager defaultManager] updateCachedAssetsForCollectionView:self.collectionView];
+    [[PhotoAssetManager defaultManager] updateCachedAssetsForCollectionView:self.collectionView fetchResult:self.fetchResult];
 }
 
 - (void)didReceiveMemoryWarning {
