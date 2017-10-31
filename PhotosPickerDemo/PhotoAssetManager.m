@@ -45,8 +45,8 @@
 - (PHFetchResult<PHAsset *> *)requestAllPhotoAssets
 {
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
-    
-    options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:YES]];
+    // ascending: 正序还是倒序
+    options.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"creationDate" ascending:NO]];
     
     return [PHAsset fetchAssetsWithOptions:options];
 }

@@ -29,6 +29,13 @@
 
 
 
+@interface PhotoPickerCell ()
+
+@property (nonatomic, strong) UIButton *selectButton;
+
+@end
+
+
 @implementation PhotoPickerCell
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -37,10 +44,21 @@
     
     if (self)
     {
-        
+        self.selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.selectButton.frame = CGRectMake(frame.size.width - 30.0, 0.0, 30.0, 30.0);
+        [self.selectButton setImage:[UIImage imageNamed:@"deselected"] forState:UIControlStateNormal];
+        [self.selectButton setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
+        [self.contentView addSubview:self.selectButton];
     }
     
     return self;
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    
+    self.selectButton.selected = selected;
 }
 
 
